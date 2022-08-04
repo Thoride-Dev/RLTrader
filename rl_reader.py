@@ -35,19 +35,23 @@ while True:
         #collect team data and init variables
         blue_team = data["list"][0]["blue"]["players"]
         orange_team = data["list"][0]["orange"]["players"]
-        my_score = 0
+        team_score = 0
 
         #search for me in the team data and get my score
         for i in range(len(blue_team)):
             if blue_team[i]["name"] == RL_Username:
-                my_score = blue_team[i]["score"]
+                for i in range(len(blue_team)): #another for loop to get team score
+                    team_score += blue_team[i]["score"]
                 break
-            elif orange_team[i]["name"] == RL_Username:
-                my_score = orange_team[i]["score"]
-                break 
+            elif orange_team[i]["name"] == RL_Username: #same as above but for orange team
+                for i in range(len(orange_team)):
+                    team_score += orange_team[i]["score"]
+                break
 
+        #average team score
+        team_score = team_score / len(blue_team)
         #pick a stock based on my score and make a trade
-        stock_to_buy = pick_stock(my_score)
+        stock_to_buy = pick_stock(team_score)
         make_trade(stock_to_buy)
     else:
         print("No new replay found.")

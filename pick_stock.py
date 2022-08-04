@@ -8,7 +8,7 @@ def pick_stock(score):
     symbols = df['Symbol'].tolist()
 
     #lerp score between 0 and 726
-    low = 726 #calculated based on my average score of 363 per game
+    low = 768 #calculated based on average diamond rank score * 2
     high = 0
     lerp_score = (score - low) / (high - low)
     lerp_score = lerp_score * len(symbols)
