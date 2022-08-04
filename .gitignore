@@ -1,2 +1,6 @@
 #ignore api keys
 api_keys.txt
+*.pyc
+*.pyo
+__pycache__
+completed_replays.txt
