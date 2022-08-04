@@ -51,6 +51,7 @@ while True:
         #average team score
         team_score = team_score / len(blue_team)
         #pick a stock based on my score and make a trade
+        print(team_score)
         stock_to_buy = pick_stock(team_score)
         make_trade(stock_to_buy)
     else:
