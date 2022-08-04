@@ -11,6 +11,7 @@ with open('api_keys.txt', 'r') as f:
 with open('completed_replays.txt', 'r') as f:
     completed_replays = set(f.read().splitlines())
 
+
 token = api_keys[2]
 
 RL_Username = "Thoride"
@@ -43,7 +44,7 @@ while True:
                 for i in range(len(blue_team)): #another for loop to get team score
                     team_score += blue_team[i]["score"]
                 break
-            elif orange_team[i]["name"] == RL_Username: #same as above but for orange team
+            elif orange_team[i]["name"] == RL_Username:
                 for i in range(len(orange_team)):
                     team_score += orange_team[i]["score"]
                 break
