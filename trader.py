@@ -24,7 +24,8 @@ def make_trade(symbol):
     print("\n")
 
     asset = alpaca.get_asset(symbol)
-    #print(asset)
+    name = asset._raw['name']
+    print(name)
     
     #make the order
     #order = alpaca.submit_order(symbol, qty=qty, side='buy', type='market', time_in_force='day')
