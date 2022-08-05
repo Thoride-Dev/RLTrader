@@ -19,12 +19,15 @@ def make_trade(symbol):
     #print(account)
     print("\n")
     
-    qty = determine_qty("TSLA", alpaca)
+    qty = determine_qty(symbol, alpaca)
     print(qty)
     print("\n")
 
+    asset = alpaca.get_asset(symbol)
+    #print(asset)
+    
     #make the order
-    #order = alpaca.submit_order(symbol, qty=qty)
+    #order = alpaca.submit_order(symbol, qty=qty, side='buy', type='market', time_in_force='day')
     #print(order)
 
 def determine_qty(symbol, alpaca):
@@ -40,4 +43,3 @@ def determine_qty(symbol, alpaca):
         share_count = 0.1
 
     return share_count
-

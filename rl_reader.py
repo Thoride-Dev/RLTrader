@@ -37,20 +37,30 @@ while True:
         blue_team = data["list"][0]["blue"]["players"]
         orange_team = data["list"][0]["orange"]["players"]
         team_score = 0
+        win = False
 
         #search for me in the team data and get my score
         for i in range(len(blue_team)):
             if blue_team[i]["name"] == RL_Username:
                 for i in range(len(blue_team)): #another for loop to get team score
                     team_score += blue_team[i]["score"]
+                if(data["list"][0]["blue"]['goals'] > data["list"][0]["orange"]['goals']):
+                    win = True
                 break
             elif orange_team[i]["name"] == RL_Username:
                 for i in range(len(orange_team)):
                     team_score += orange_team[i]["score"]
+                if(data["list"][0]["orange"]['goals'] > data["list"][0]["blue"]['goals']):
+                    win = True
                 break
 
         #average team score
         team_score = team_score / len(blue_team)
+
+        #loss penalty
+        if(not win):
+            team_score = team_score - 50
+
         #pick a stock based on my score and make a trade
         print(team_score)
         stock_to_buy = pick_stock(team_score)
