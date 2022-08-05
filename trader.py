@@ -28,8 +28,8 @@ def make_trade(symbol):
     print(name)
     
     #make the order
-    #order = alpaca.submit_order(symbol, qty=qty, side='buy', type='market', time_in_force='day')
-    #print(order)
+    order = alpaca.submit_order(symbol, qty=qty, side='buy', type='market', time_in_force='day')
+    print(order)
 
 def determine_qty(symbol, alpaca):
     #get the current price 
