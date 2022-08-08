@@ -18,7 +18,7 @@ def should_sell(symbol, alpaca):
 
     #Calculate SMAs
     returned_data['long_SMA'] = returned_data['close'].rolling(window=240, min_periods=1).mean()
-    returned_data['short_SMA'] = returned_data['close'].rolling(window=120, min_periods=1).mean()
+    returned_data['short_SMA'] = returned_data['close'].rolling(window=72, min_periods=1).mean()
 
     #Determine signals
     returned_data['Cross'] = 0.0
@@ -30,7 +30,7 @@ def should_sell(symbol, alpaca):
     returned_data["Signal"] = returned_data["Signal"].map(map_dict)
 
     # Plot the data
-    #plot_data(returned_data)
+    plot_data(returned_data)
 
     print(symbol + ": " + str(returned_data.iloc[-1]["Signal"]))
 
