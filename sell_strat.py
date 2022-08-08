@@ -30,7 +30,7 @@ def should_sell(symbol, alpaca):
     returned_data["Signal"] = returned_data["Signal"].map(map_dict)
 
     # Plot the data
-    plot_data(returned_data)
+    #plot_data(returned_data)
 
     print(symbol + ": " + str(returned_data.iloc[-1]["Signal"]))
 
