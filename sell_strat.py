@@ -81,14 +81,14 @@ account = alpaca.get_account()
 
 
 while True:
+    #if(alpaca.get_clock()._raw['is_open'] == True): #if market is open, disabled for now
     #get all open positions
-    if(alpaca.get_clock()._raw['is_open'] == True):
-        positions = alpaca.list_positions()
-        for position in positions:
-            symbol = position._raw['symbol']
-            should_sell(symbol, alpaca)
-        print("Waiting for 1 hour")
-        time.sleep(3600) #wait 1 hour
+    positions = alpaca.list_positions()
+    for position in positions:
+        symbol = position._raw['symbol']
+        should_sell(symbol, alpaca) #sell if we should
+    print("Waiting for 1 hour")
+    time.sleep(3600) #wait 1 hour
     #if market is closed, wait until market opens, not using this right now    
     """
     else:
