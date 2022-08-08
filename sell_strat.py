@@ -3,7 +3,6 @@ import time
 import alpaca_trade_api as api
 import numpy as np
 import pytz
-import talib
 import matplotlib.pyplot as plt
 
 def should_sell(symbol, alpaca):
