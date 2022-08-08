@@ -1,21 +1,12 @@
 from datetime import datetime, timedelta
+import time
 import alpaca_trade_api as api
 import numpy as np
 import pytz
 import talib
 import matplotlib.pyplot as plt
 
-def should_sell(symbol):
-    with open('api_keys.txt', 'r') as f:
-        api_keys = f.read().splitlines()
-
-    #region API_KEYS
-    API_KEY = api_keys[0]
-    API_SECRET = api_keys[1]
-    BASE_URL = "https://paper-api.alpaca.markets"
-    #endregion 
-
-    alpaca = api.REST(API_KEY, API_SECRET, BASE_URL)
+def should_sell(symbol, alpaca):
     account = alpaca.get_account()
     #print(account)
 
@@ -41,15 +32,16 @@ def should_sell(symbol):
     # Plot the data
     #plot_data(returned_data)
 
-    print(returned_data.iloc[-1])
+    print(symbol + ": " + str(returned_data.iloc[-1]["Signal"]))
 
     #Determine if we should sell
     signal = returned_data.iloc[-1]['Signal']
     if(signal == 'sell'):
         qty = alpaca.get_position(symbol)._raw['qty']
         order = alpaca.submit_order(symbol, qty=qty, side='sell', type='market', time_in_force='day')
-    else:
-        print("No signal")
+        #write to log file
+        with open('log.txt', 'a') as f:
+            f.write(str(datetime.now()) + ": " + symbol + ": " + str(qty) + ": " + str(order) + "\n")
 
 
 def plot_data(returned_data):
@@ -72,4 +64,40 @@ def plot_data(returned_data):
 
     plt.show()
 
-should_sell('MRNA')
+
+
+with open('api_keys.txt', 'r') as f:
+    api_keys = f.read().splitlines()
+
+#region API_KEYS
+API_KEY = api_keys[0]
+API_SECRET = api_keys[1]
+BASE_URL = "https://paper-api.alpaca.markets"
+#endregion 
+
+alpaca = api.REST(API_KEY, API_SECRET, BASE_URL)
+account = alpaca.get_account()
+#print(account)
+
+
+while True:
+    #get all open positions
+    if(alpaca.get_clock()._raw['is_open'] == True):
+        positions = alpaca.list_positions()
+        for position in positions:
+            symbol = position._raw['symbol']
+            should_sell(symbol, alpaca)
+        print("Waiting for 1 hour")
+        time.sleep(3600) #wait 1 hour
+    #if market is closed, wait until market opens, not using this right now    
+    """
+    else:
+        #wait until 9am EST
+        while True:
+            timeNow = datetime.now(pytz.timezone('US/Eastern'))
+            if(timeNow.hour == 9):
+                break
+            else:
+                print("Waiting for 9am EST")
+                time.sleep(60)
+    """

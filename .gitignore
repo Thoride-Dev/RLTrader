@@ -4,3 +4,4 @@ api_keys.txt
 *.pyo
 __pycache__
 completed_replays.txt
+log.txt
