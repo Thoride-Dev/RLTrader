@@ -12,7 +12,7 @@ with open('completed_replays.txt', 'r') as f:
     completed_replays = set(f.read().splitlines())
 
 
-token = api_keys[2]
+token = api_keys[2] #ballchasing.com token
 
 RL_Username = "Thoride"
 
