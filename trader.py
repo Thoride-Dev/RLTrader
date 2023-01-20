@@ -2,7 +2,7 @@
 import math
 import alpaca_trade_api as api
 
-def make_trade(symbol):
+def make_trade(symbol, score):
     #read api keys text file
     with open('api_keys.txt', 'r') as f:
         api_keys = f.read().splitlines()
@@ -19,7 +19,16 @@ def make_trade(symbol):
     #print(account)
     print("\n")
     
-    qty = determine_qty(symbol, alpaca)
+    #qty = determine_qty(symbol, alpaca)
+    #Choose quantity based on score
+    if(score > 300 and score < 627):
+        qty = 10
+    elif(score >= 627 and score < 768): 
+        qty = 25
+    elif(score >= 768):
+        qty = 50
+    else:
+        qty = 5
     print(qty)
     print("\n")
 

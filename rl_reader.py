@@ -63,17 +63,17 @@ while True:
                 break
 
         #average team score
-        team_score = team_score / len(blue_team)
+        avg_team_score = team_score / len(blue_team)
 
         #loss penalty
         if(not win):
-            team_score = team_score - 50
+            avg_team_score = avg_team_score - 50
             print("Loss penalty")
 
         #pick a stock based on my score and make a trade
-        print(team_score)
-        stock_to_buy = pick_stock(team_score)
-        make_trade(stock_to_buy)
+        print(avg_team_score)
+        stock_to_buy = pick_stock(avg_team_score)
+        make_trade(stock_to_buy, avg_team_score)
     else:
         print("No new replay found.")
         
