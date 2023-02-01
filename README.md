@@ -14,6 +14,7 @@ The script then purchases those stocks via the linked alpaca account.
 Currently, there is a selling algorithm in ``sell_strat_basic_.py`` however it is untested and not a requirement/priority
 
 ## How to Use
+**I recommend using the TEAM Branch as main is out of date and only accounts for individual performance**
 - First clone the repo and install the following libraries
   - alpaca_trade_api
   - requests
