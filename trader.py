@@ -10,7 +10,7 @@ def make_trade(symbol, score):
     #region API_KEYS
     API_KEY = api_keys[0]
     API_SECRET = api_keys[1]
-    BASE_URL = "https://paper-api.alpaca.markets"
+    BASE_URL = "https://api.alpaca.markets"
     #endregion 
 
     alpaca = api.REST(API_KEY, API_SECRET, BASE_URL)
