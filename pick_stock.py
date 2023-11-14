@@ -4,7 +4,7 @@ import pandas as pd
 #pick a stock from the s&p 500 where a higher score = better stock
 def pick_stock(score):
     #get symbol column from stock markets
-    df = pd.read_csv('tickers.csv')
+    df = pd.read_csv('tickers111423.csv')
     symbols = df['Symbol'].tolist()
 
     #lerp score between 0 and 768
