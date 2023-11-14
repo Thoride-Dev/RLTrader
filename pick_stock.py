@@ -15,7 +15,7 @@ def pick_stock(score):
     lerp_score = round(lerp_score)
 
     #pick stock
-    print(lerp_score)
+    print("Stock position: " + str(score))
     stock = symbols[lerp_score]
     return stock
 

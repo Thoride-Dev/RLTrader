@@ -68,10 +68,10 @@ while True:
         #loss penalty
         if(not win):
             avg_team_score = avg_team_score - 50
-            print("Loss penalty")
+            print("Loss penalty applied.")
 
         #pick a stock based on my score and make a trade
-        print(avg_team_score)
+        print("Avg team score: ", avg_team_score)
         stock_to_buy = pick_stock(avg_team_score)
         make_trade(stock_to_buy, avg_team_score)
     else:
